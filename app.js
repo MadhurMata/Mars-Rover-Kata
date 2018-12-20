@@ -75,10 +75,15 @@ console.log(moveForward(rover))
 */
 
 //Iteration 4 | Commands & Iteration 5 | Tracking
+
 var rute = "rffrfflfrff"
+rute = "ffrrgxbblfv"
+
 var record =[] 
+function programedRute(){
 for(var i = 0; i < rute.length; i++){
-switch (rute[i]){
+if(rute[i] === "r" || rute[i] === "f" || rute[i] === "l" || rute[i] === "b"){
+  switch (rute[i]){
   case "r":
   turnRight(rover);
   break;
@@ -88,9 +93,55 @@ switch (rute[i]){
   case "f":
   moveForward(rover)
   record.push([rover.x, rover.y])
-
+  break;
+  case "b":
+  moveBackward(rover);
+  record.push([rover.x, rover.y]);
   break;
 }
+}else{
+  console.log( "Invalid imput")
 }
+}
+}
+/*
+console.log(programedRute(rute));
 console.log(record)
+*/
+console.log(programedRute(rute));
+
+//Bonus | Enforce Boundaries
+var grid = [
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0],
+];
+
+//Bonus | Other Suggested Features
+
+//Iteration 3 | Moving the Rover
+function moveBackward(rover){
+  switch(rover.direction){
+  case "N":
+  rover.y--;
+  break;
+  case "W":
+  rover.x++
+  break;
+    case "S":
+    rover.y++
+    break;
+      case "E":
+      rover.x--
+      break;
+      }
+  console.log("moveBackward was called [" + rover.x + "," + rover.y + "]")
+}
 
